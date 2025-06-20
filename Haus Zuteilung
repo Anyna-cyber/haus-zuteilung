@@ -1,0 +1,54 @@
+import streamlit as st
+
+st.set_page_config(page_title="Haus-Zuteilung für Freunde", page_icon="🏰")
+
+st.title("🏰 Der große Haus-Zuteilungstest")
+st.subheader("Für alle, die wissen wollen, wo sie wirklich hingehören 😎")
+
+st.write("Beantworte zwei Fragen – und wir verraten dir, ob du ins noble **Haus Struktur** oder das wilde **Haus Chaos** gehörst!")
+
+# Frage 1
+antwort1 = st.radio(
+    "🕒 Was machst du an einem typischen Samstagmorgen?",
+    [
+        "a) Joggen um 7 Uhr, dann Bullet Journal und Kräutertee 🍵",
+        "b) Katerfrühstück um 13 Uhr, Netflix läuft noch vom Vorabend 🍕"
+    ]
+)
+
+# Frage 2
+antwort2 = st.radio(
+    "🚪Unerwarteter Besuch steht vor der Tür. Du ...",
+    [
+        "a) bringst Snacks und ein vorbereitetes Gesellschaftsspiel 🎲",
+        "b) versteckst dich mit Chips hinter dem Sofa 🛋️"
+    ]
+)
+
+# Auswertung
+if st.button("🏁 Welches Haus ist deins?"):
+    punkte_chaos = 0
+    punkte_struktur = 0
+
+    if antwort1.startswith("a"):
+        punkte_struktur += 1
+    else:
+        punkte_chaos += 1
+
+    if antwort2.startswith("a"):
+        punkte_struktur += 1
+    else:
+        punkte_chaos += 1
+
+    st.divider()
+
+    if punkte_chaos > punkte_struktur:
+        st.header("🎉 Willkommen in **Haus Chaos**!")
+        st.image("https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM2ZjZTI3dGRlY2MyZmFjMWZlOGZhYzg2NDAxMWZhNmFjZDg3MDA1YiZjdD1n/vcP8fZAlXYtLJvEqz1/giphy.gif", width=300)
+        st.write("Unkontrollierbar, charmant chaotisch und vermutlich von der Muse geküsst. Regeln sind optional. Wie dein Mittagessen.")
+    else:
+        st.header("📐 Willkommen in **Haus Struktur**!")
+        st.image("https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNDdhZWFkNzEyNGM3ZDdhZmQ1OWI5YjllZDA0ZmE2ZTQ3NjEyYTZjYSZjdD1n/TIl6xMhL4pAEIFmjcn/giphy.gif", width=300)
+        st.write("Du lebst organisiert, effizient – und bist wahrscheinlich der Grund, warum eure Gruppe überhaupt funktioniert.")
+
+    st.balloons()
